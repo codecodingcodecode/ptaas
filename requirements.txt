@@ -1,0 +1,4 @@
+django-environ
+django-cors-headers
+djangorestframework
+whitenoise
