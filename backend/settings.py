@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'backend',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +132,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# Umgebungsvariablen initialisieren
+env = environ.Env()
+
+# Lade die Variablen aus der .env-Datei
+environ.Env.read_env()
+
+# Definiere die Pfade zu den Tools
+NMAP_PATH = env('NMAP_PATH', default='/usr/bin/nmap')
+NIKTO_PATH = env('NIKTO_PATH', default='/usr/bin/nikto')
