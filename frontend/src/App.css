@@ -1,6 +1,6 @@
 /* Global Styles */
 :root {
-  --primary-color: #3498db;
+  --primary-color: #2c3e50;
   --secondary-color: #2c3e50;
   --background-color: #f5f7fa;
   --text-color: #333;
@@ -217,7 +217,55 @@ main {
 }
 
 .result h4 {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.75rem; /* Placeholder Styles */
+  .placeholder {
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #ddd;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .result {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
+
+  .progress-bar {
+    margin: 1rem 0;
+  }
+
+  .progress-bar-inner {
+    height: 8px;
+    background-color: #3498db;
+    transition: width 0.3s;
+  }
+
   color: var(--secondary-color);
   font-size: 1.25rem;
 }

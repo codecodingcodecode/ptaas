@@ -10,6 +10,11 @@ import Services from "./components/Services";
 import Reports from "./components/Reports";
 import Contact from "./components/Contact";
 import Home from "./components/Home";
+import axios from "axios";
+
+// Set the CSRF token in all Axios requests
+axios.defaults.xsrfCookieName = "csrftoken"; // The name of the CSRF token in the cookie
+axios.defaults.xsrfHeaderName = "X-CSRFToken"; // The header name for the CSRF token
 
 function App() {
   return (
