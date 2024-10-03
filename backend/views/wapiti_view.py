@@ -1,24 +1,47 @@
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from flask import Flask, request, jsonify
 import subprocess
+import json
 
-@api_view(['POST'])
-def wapiti_scan(request):
-    url = request.data.get('url')
-    if url:
-        try:
-            wapiti_result = subprocess.run(['wapiti', url], capture_output=True, text=True)
-            return Response({
-                "status": "Completed",
-                "result": wapiti_result.stdout
-            }, status=status.HTTP_200_OK)
-        except Exception as e:
-            return Response({
-                "status": "Failed",
-                "error": str(e)
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    else:
-        return Response({
+app = Flask(__name__)
+
+@app.route('/wapiti-scan/', methods=['POST'])
+def wapiti_scan():
+    data = request.get_json()
+    url = data.get('url')
+    
+    if not url:
+        return jsonify({
             "error": "No URL provided"
-        }, status=status.HTTP_400_BAD_REQUEST)
+        }), 400
+    
+    try:
+        # Execute Wapiti with JSON output, capturing it to stdout
+        wapiti_result = subprocess.run(
+            ['wapiti', '-u', url, '-f', 'json', '-m', 'backup,exec,file,sql,xss', '-o', '/dev/stdout'], 
+            capture_output=True, text=True
+        )
+        
+        # Parse the JSON response from Wapiti output
+        wapiti_output = json.loads(wapiti_result.stdout)
+        
+        # Return the parsed JSON result directly as part of the response
+        return jsonify({
+            "status": "Completed",
+            "result": wapiti_output
+        }), 200
+    
+    except subprocess.CalledProcessError as e:
+        return jsonify({
+            "status": "Failed",
+            "error": str(e)
+        }), 500
+    
+    except json.JSONDecodeError as e:
+        return jsonify({
+            "status": "Failed",
+            "error": "Failed to parse JSON output",
+            "details": str(e)
+        }), 500
+    
+if __name__ == '__main__':
+    app.run(debug=True)

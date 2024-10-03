@@ -4,3 +4,4 @@ from .sslyze_view import sslyze_scan
 from .sqlmap_view import sqlmap_scan
 from .wapiti_view import wapiti_scan
 from .combined_scan import combined_scan
+from .progress_view import get_progress

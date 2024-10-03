@@ -142,3 +142,15 @@ environ.Env.read_env()
 # Definiere die Pfade zu den Tools
 NMAP_PATH = env('NMAP_PATH', default='/usr/bin/nmap')
 NIKTO_PATH = env('NIKTO_PATH', default='/usr/bin/nikto')
+
+# Allow the React app's domain for CORS
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React development server
+    # Add other domains if necessary
+]
+
+# Allow credentials for cross-origin requests
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_COOKIE_SECURE = False  # Set to True in production (with HTTPS)
+CSRF_COOKIE_HTTPONLY = False  # Keep this as False so JavaScript can access it
