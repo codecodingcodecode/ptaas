@@ -7,17 +7,31 @@ import json
 @api_view(['POST'])
 def sqlmap_scan(request):
     url = request.data.get('url')
+    
+    # Zusätzliche Parameter für aggressiveren Test
+    crawl_depth = request.data.get('crawl_depth', 3)  # Standardmäßig 3
+    threads = request.data.get('threads', 5)  # Standardmäßig 5 Threads
+    level = request.data.get('level', 5)  # Level von 1 bis 5, standardmäßig 5
+    risk = request.data.get('risk', 3)  # Risk Level von 1 bis 3, standardmäßig 3
+    test_forms = request.data.get('forms', True)  # Testet auch Formulare
+    
     if url:
         try:
-            # Führt den SQLMap-Scan durch und gibt die Ergebnisse aus
-            sqlmap_result = subprocess.run(
-                ['sqlmap', '-u', url, '--crawl=2', '--batch', '--threads=1'],
-                capture_output=True, text=True
-            )
+            # Bereite SQLMap-Befehl vor
+            sqlmap_command = [
+                'sqlmap', '-u', url, f'--crawl={crawl_depth}', '--batch',
+                f'--threads={threads}', f'--level={level}', f'--risk={risk}'
+            ]
+
+            # Teste auch POST-Formulare, falls aktiviert
+            if test_forms:
+                sqlmap_command.append('--forms')
+            
+            # Führe den SQLMap-Scan aus
+            sqlmap_result = subprocess.run(sqlmap_command, capture_output=True, text=True)
             raw_output = sqlmap_result.stdout
 
-            # Versucht, die Ausgabe zu strukturieren (einfaches Parsen und Formatieren)
-            # Hier wird einfach nach relevanten Abschnitten gesucht
+            # Strukturierte Ergebnisse vorbereiten
             result_data = {
                 "start_time": None,
                 "end_time": None,
@@ -25,7 +39,7 @@ def sqlmap_scan(request):
                 "details": []
             }
 
-            # Beispiel: Extrahiert bestimmte Textabschnitte, du kannst dies je nach Bedarf erweitern
+            # Parse die Ausgabe von SQLMap
             for line in raw_output.splitlines():
                 if "[*] starting at" in line:
                     result_data["start_time"] = line.split("starting at")[-1].strip()
@@ -36,11 +50,10 @@ def sqlmap_scan(request):
                 if "SQL injection vulnerability found" in line:
                     result_data["injections_found"] = True
 
-            formatted_output = json.dumps(result_data, indent=4)
-
+            # Formatiere die Ausgabe und gebe sie zurück
             return Response({
                 "status": "Completed",
-                "result": formatted_output
+                "result": result_data
             }, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({
