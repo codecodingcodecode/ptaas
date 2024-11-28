@@ -1,0 +1,331 @@
+/* Base styles */
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  color: #02111b;
+  background-color: #fcfcfc;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Mindestens die Höhe des Bildschirms */
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  background-color: #ffffff; /* Setzt einen weißen Hintergrund */
+  min-height: calc(100vh - 150px); /* Reduziert Höhe für Header und Footer */
+}
+
+/* Header styles */
+header {
+  background-color: #fcfcfc;
+  color: #02111b;
+  padding: 1.5rem 0;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #02111b;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav a {
+  color: #02111b;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #5d737e;
+}
+
+/* Typography */
+.page-title {
+  font-size: 2.2rem;
+  text-align: center;
+  color: #02111b;
+  margin-bottom: 1rem;
+}
+
+.page-text {
+  font-size: 1.1rem;
+  text-align: center;
+  color: #30292f;
+  margin-bottom: 1.5rem;
+}
+
+/* CTA Section */
+.cta-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.cta-button {
+  background-color: #30292f;
+  color: #fcfcfc;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #5d737e;
+}
+
+.cta-button:disabled {
+  background-color: #3f4045;
+  cursor: not-allowed;
+}
+
+/* URL Input Section */
+.url-input-section {
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.url-input {
+  flex-grow: 1;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #3f4045;
+  border-radius: 5px 0 0 5px;
+  background-color: #fcfcfc;
+  color: #02111b;
+}
+
+.url-submit {
+  border-radius: 0 5px 5px 0;
+  padding: 0.6rem;
+  font-size: 1rem;
+  background-color: #30292f;
+  color: #fcfcfc;
+}
+
+.url-submit:hover {
+  background-color: #5d737e;
+}
+
+/* Error Message */
+.error-message {
+  color: #e74c3c;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Results Section */
+.results-section {
+  background-color: #fcfcfc;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-top: 1.5rem;
+}
+
+.result {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #3f4045;
+}
+
+.result:last-child {
+  border-bottom: none;
+}
+
+.result h4 {
+  color: #02111b;
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Placeholder and Loading Spinner */
+.placeholder {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #30292f;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Modal Styles */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fcfcfc;
+  padding: 1.5rem;
+  border-radius: 5px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal h2 {
+  color: #02111b;
+  margin-bottom: 1rem;
+}
+
+.modal p,
+.modal ul {
+  margin-bottom: 1rem;
+  color: #30292f;
+}
+
+.modal ul {
+  padding-left: 1.5rem;
+}
+
+.agree-button {
+  background-color: #30292f;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.agree-button:hover {
+  background-color: #5d737e;
+}
+
+/* Download Button */
+.download-button {
+  display: block;
+  margin: 1.5rem auto 0;
+  background-color: #30292f;
+}
+
+.download-button:hover {
+  background-color: #5d737e;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page-content {
+    min-height: calc(100vh - 80px);
+    padding-bottom: 2rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .url-input-section {
+    flex-direction: column;
+  }
+
+  .url-input,
+  .url-submit {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal {
+    width: 95%;
+    padding: 1rem;
+  }
+}
+/* URL Input Section */
+.url-input-section {
+  display: flex;
+  width: 100%;
+  max-width: 600px; /* Etwas breiter für mehr Lesbarkeit */
+  margin: 0 auto;
+  border: 1px solid #3f4045; /* Linie um das gesamte Eingabefeld und den Button */
+  border-radius: 10px; /* Runde Ecken */
+  overflow: hidden; /* Überlauf verhindern, um saubere Ecken zu haben */
+}
+
+.url-input {
+  flex-grow: 1;
+  padding: 0.8rem; /* Mehr Padding für besseren Lesekomfort */
+  font-size: 1rem;
+  border: none; /* Keine separate Linie um das Eingabefeld */
+  background-color: #f4f4f4; /* Helleres Grau für besseren Kontrast */
+  color: #02111b;
+  border-right: 1px solid #3f4045; /* Dünne Linie zwischen Eingabefeld und Button */
+}
+
+.url-submit {
+  padding: 0.8rem 1.5rem; /* Mehr Padding für einen prominenteren Button */
+  font-size: 1rem;
+  background-color: #02111b;
+  color: #fcfcfc;
+  border: none; /* Keine separate Linie um den Button */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.url-submit:hover {
+  background-color: #30292f;
+  transform: scale(1.05); /* Leichter Vergrößerungseffekt beim Hover */
+}
+
+.url-submit:active {
+  background-color: #5d737e;
+  transform: scale(1); /* Leichtes Zurückspringen beim Klick */
+}

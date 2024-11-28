@@ -1,30 +1,42 @@
-/* components/Header.css */
+/* Header.css */
 
 /* Header Styles */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  padding: 1rem 2rem;
+  background-color: #fcfcfc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 80px; /* Konsistente Höhe für den Header */
+  max-width: 1200px;
+  margin: 0 auto; /* Zentrierung */
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #02111b;
+  font-weight: bold;
 }
 
 .nav-list {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 1.5rem;
 }
 
 .nav-link {
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #5d737e;
+  font-weight: 600;
   position: relative;
   transition: color 0.3s ease;
+  padding: 0.5rem;
 }
 
 .nav-link::after {
@@ -55,11 +67,20 @@
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
-    gap: 20px;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
   }
 
   .nav-list {
     flex-direction: column;
     align-items: center;
+  }
+
+  .nav-link {
+    font-size: 1rem;
   }
 }

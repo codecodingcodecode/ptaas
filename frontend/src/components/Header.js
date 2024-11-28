@@ -1,7 +1,7 @@
 // components/Header.js
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import "./Header.css";
+import "./header.css";
 
 function Header() {
   return (
@@ -15,18 +15,8 @@ function Header() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard" className="nav-link">
-              Dashboard
-            </NavLink>
-          </li>
-          <li>
             <NavLink to="/services" className="nav-link">
               Services
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/reports" className="nav-link">
-              Reports
             </NavLink>
           </li>
           <li>

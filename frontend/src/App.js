@@ -1,40 +1,27 @@
-// App.js
+// src/App.js
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
-import Header from "./components/Header"; // Import Header
-
-/* Import Page Components */
-import Dashboard from "./components/Dashboard";
-import Services from "./components/Services";
-import Reports from "./components/Reports";
-import Contact from "./components/Contact";
-import Home from "./components/Home";
-import axios from "axios";
-
-// Set the CSRF token in all Axios requests
-axios.defaults.xsrfCookieName = "csrftoken"; // The name of the CSRF token in the cookie
-axios.defaults.xsrfHeaderName = "X-CSRFToken"; // The header name for the CSRF token
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./components/home";
+import Services from "./components/services";
+import Contact from "./components/contact";
+import Layout from "./components/layout";
+import Header from "./components/header"; // Header importieren
+import Footer from "./components/footer"; // Footer importieren
+import "./app.css"; // Globale CSS-Stile
 
 function App() {
   return (
     <Router>
-      <div className="wrapper">
-        <Header /> {/* Use Header here */}
-        <main>
-          <div className="content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/reports" element={<Reports />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
-          </div>
-        </main>
-        <footer>
-          <p>&copy; 2024 PTaaS. Seamless security at your fingertips.</p>
-        </footer>
+      <div className="app-wrapper">
+        <Header /> {/* Header oben */}
+        <div className="content-wrapper">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </div>
+        <Footer /> {/* Footer unten */}
       </div>
     </Router>
   );

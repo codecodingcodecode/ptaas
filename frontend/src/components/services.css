@@ -1,0 +1,93 @@
+/* General Page Styles */
+.services-page {
+  padding: 50px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: #fcfcfc;
+}
+
+.services-title {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #333;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.services-subtitle {
+  font-size: 1.2em;
+  margin-bottom: 40px;
+  color: #666;
+  animation: fadeInDown 1.5s ease-in-out;
+}
+
+.services-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px; /* Reduced gap for even spacing */
+  padding: 0 20px; /* Add some padding to ensure consistency */
+}
+
+/* Service Card Styles */
+.service-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 250px;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  animation: fadeInUp 1.8s ease-in-out;
+}
+
+.service-card h3 {
+  color: #02111b; /* Updated to a softer blue that matches your theme */
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  font-size: 1em;
+  color: #555;
+}
+
+.service-card a {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #1a73e8; /* Updated blue color */
+  font-weight: bold;
+}
+
+.service-card a:hover {
+  text-decoration: underline;
+}
+
+/* Hover Effect */
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
